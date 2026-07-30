@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Бесплатная подписка навсегда Hiddify и Karing — инструкция для новичков</title>
+    <style>
+      :root {
+        --bg: #07111f;
+        --panel: rgba(15, 23, 42, 0.82);
+        --panel-2: rgba(30, 41, 59, 0.8);
+        --text: #f8fafc;
+        --muted: #94a3b8;
+        --accent: #7c3aed;
+        --accent-2: #38bdf8;
+        --good: #34d399;
+        --border: rgba(255, 255, 255, 0.12);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 32%),
+          radial-gradient(circle at top right, rgba(124, 58, 237, 0.2), transparent 30%),
+          var(--bg);
+        line-height: 1.6;
+      }
+
+      .wrap {
+        max-width: 1220px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .hero {
+        background: linear-gradient(135deg, rgba(124, 58, 237, 0.95), rgba(56, 189, 248, 0.9));
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        padding: 36px;
+        box-shadow: 0 20px 60px rgba(2, 6, 23, 0.25);
+      }
+
+      .hero h1 {
+        font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+        margin: 0 0 12px;
+      }
+
+      .hero p {
+        font-size: 1.05rem;
+        margin: 0;
+        max-width: 760px;
+        color: rgba(248, 250, 252, 0.95);
+      }
+
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .badge {
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.16);
+        font-size: 0.92rem;
+        backdrop-filter: blur(8px);
+      }
+
+      .section {
+        margin-top: 24px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 24px;
+        backdrop-filter: blur(14px);
+      }
+
+      .section h2 {
+        margin: 0 0 10px;
+        font-size: 1.28rem;
+      }
+
+      .section .lead {
+        color: var(--muted);
+        margin-top: 0;
+        margin-bottom: 18px;
+      }
+
+      .download-grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .download-card {
+        background: linear-gradient(135deg, rgba(124, 58, 237, 0.14), rgba(56, 189, 248, 0.14));
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 18px;
+      }
+
+      .download-card h3 {
+        margin: 0 0 8px;
+        font-size: 1.05rem;
+      }
+
+      .download-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .download-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 9px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+
+      .download-links a:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.16);
+      }
+
+      .copy-box {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin-top: 6px;
+        padding: 10px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--border);
+      }
+
+      .copy-box .label {
+        min-width: 104px;
+        font-weight: 700;
+        color: #dbeafe;
+      }
+
+      .qr-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 188px;
+        padding: 14px;
+        margin-top: 8px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.18);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+      }
+
+      .qr-wrap img {
+        width: 180px;
+        height: 180px;
+        object-fit: contain;
+        border-radius: 14px;
+        background: white;
+        padding: 6px;
+      }
+
+      .copy-btn,
+      .import-btn {
+        border: none;
+        border-radius: 999px;
+        padding: 8px 12px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: white;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .copy-btn:hover,
+      .import-btn:hover {
+        filter: brightness(1.08);
+      }
+
+      #toast {
+        position: fixed;
+        left: 50%;
+        bottom: 24px;
+        transform: translateX(-50%) translateY(18px);
+        opacity: 0;
+        pointer-events: none;
+        padding: 12px 16px;
+        border-radius: 999px;
+        background: rgba(2, 6, 23, 0.92);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.16);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.24);
+        transition: all 0.25s ease;
+        z-index: 999;
+      }
+
+      #toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card {
+        background: var(--panel-2);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 18px;
+      }
+
+      .card h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 1.05rem;
+      }
+
+      .card ol {
+        padding-left: 18px;
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .card strong { color: var(--text); }
+
+      .tip {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        background: rgba(52, 211, 153, 0.12);
+        color: #d1fae5;
+        border: 1px solid rgba(52, 211, 153, 0.24);
+        padding: 10px 12px;
+        border-radius: 12px;
+        margin-bottom: 14px;
+      }
+
+      .stack {
+        display: grid;
+        gap: 12px;
+      }
+
+      .mini {
+        padding: 12px 14px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+      }
+
+      .mini strong { display: block; margin-bottom: 4px; }
+
+      .donate-card {
+        background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(249, 115, 22, 0.16));
+        border: 1px solid rgba(248, 113, 113, 0.32);
+        border-radius: 22px;
+        padding: 22px;
+        box-shadow: 0 16px 40px rgba(127, 29, 29, 0.22);
+      }
+
+      .donate-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .donate-head h2 {
+        margin: 0 0 6px;
+        color: #fff1f2;
+      }
+
+      .donate-head .lead {
+        margin: 0;
+        color: #fecaca;
+      }
+
+      .donate-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #ef4444, #f97316);
+        color: white;
+        text-decoration: none;
+        font-weight: 700;
+        box-shadow: 0 8px 24px rgba(239, 68, 68, 0.28);
+      }
+
+      .donate-grid {
+        display: grid;
+        grid-template-columns: minmax(220px, 240px) 1fr;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .donate-qr {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+      }
+
+      .donate-qr img {
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+      }
+
+      .donate-text {
+        color: #ffe4e6;
+      }
+
+      .donate-text p {
+        margin: 0 0 10px;
+      }
+
+      .donate-text a {
+        color: #fff;
+        word-break: break-all;
+      }
+
+      .donate-thanks {
+        margin-top: 12px;
+        font-weight: 700;
+        color: #fff7ed;
+      }
+
+      .disclaimer {
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        text-align: center;
+        font-size: 0.78rem;
+        line-height: 1.5;
+        color: rgba(148, 163, 184, 0.9);
+      }
+
+      @media (max-width: 900px) {
+        .grid { grid-template-columns: 1fr 1fr; }
+        .download-grid { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 640px) {
+        .wrap { padding: 14px; }
+        .hero, .section { padding: 18px; }
+        .grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="hero">
+        <h1>Как установить бесплатную подписку Hiddify и Karing на телефон, планшет или компьютер</h1>
+        <p>
+          Это простой и понятный гид для новичков: где скачать приложения, как установить их и с чего начать.
+          Все шаги расписаны так, чтобы не тратить время на лишние поиски.
+        </p>
+        <div class="badge-row">
+          <span class="badge">📱 Android</span>
+          <span class="badge">🍎 iPhone / iPad</span>
+          <span class="badge">💻 Windows</span>
+          <span class="badge">🖥️ macOS</span>
+          <span class="badge">🐧 Linux</span>
+          <span class="badge">📺 Android TV</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="tip">🔗 Выбирайте только проверенный источник</div>
+        <p class="lead">
+          Ниже — рабочие ссылки на официальные магазины приложений и GitHub для Hiddify и Karing.
+          Вы можете выбрать удобный вариант для Android, iPhone, Windows и других устройств.
+        </p>
+        <div class="download-grid">
+          <article class="download-card">
+            <h3>Hiddify</h3>
+            <div class="download-links">
+              <a href="https://play.google.com/store/apps/details?id=app.hiddify.com" target="_blank" rel="noopener">Google Play</a>
+              <a href="https://apps.apple.com/us/app/hiddify-proxy-vpn/id6596777532?platform=iphone" target="_blank" rel="noopener">App Store</a>
+              <a href="https://hiddify.com/" target="_blank" rel="noopener">Официальный сайт</a>
+              <a href="https://github.com/hiddify/hiddify-app/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>
+            </div>
+          </article>
+          <article class="download-card">
+            <h3>Karing</h3>
+            <div class="download-links">
+              <a href="https://apps.apple.com/us/app/karing/id6472431552" target="_blank" rel="noopener">App Store</a>
+              <a href="https://karing.app/download" target="_blank" rel="noopener">Официальный сайт</a>
+              <a href="https://github.com/KaringX/karing/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="tip">✅ Скачивайте только из официальных источников</div>
+        <p class="lead">
+          Для безопасной установки лучше использовать официальные магазины приложений или проверенные сайты.
+        </p>
+        <div class="grid">
+          <article class="card">
+            <h3>Android</h3>
+            <ol>
+              <li>Откройте Google Play или официальный сайт приложения.</li>
+              <li>Найдите <strong>Hiddify</strong> или <strong>Karing</strong>.</li>
+              <li>Нажмите «Установить» и разрешите всё, что попросит система.</li>
+              <li>Откройте приложение и подключитесь к профилю.</li>
+            </ol>
+          </article>
+
+          <article class="card">
+            <h3>iPhone и iPad</h3>
+            <ol>
+              <li>Откройте App Store.</li>
+              <li>Введите название приложения в поиск.</li>
+              <li>Нажмите «Получить» и подтвердите установку.</li>
+              <li>После установки откройте приложение и следуйте его подсказкам.</li>
+            </ol>
+          </article>
+
+          <article class="card">
+            <h3>Windows</h3>
+            <ol>
+              <li>Откройте Microsoft Store или официальный сайт.</li>
+              <li>Найдите нужное приложение и установите его.</li>
+              <li>Запустите программу и примите условия установки.</li>
+              <li>Подключитесь к нужному профилю или серверу.</li>
+            </ol>
+          </article>
+
+          <article class="card">
+            <h3>macOS</h3>
+            <ol>
+              <li>Откройте App Store или официальный сайт разработчика.</li>
+              <li>Скачайте приложение и перетащите его в папку «Приложения».</li>
+              <li>Запустите его и разрешите всё, что требуется.</li>
+              <li>Подключитесь и проверьте, что всё работает.</li>
+            </ol>
+          </article>
+
+          <article class="card">
+            <h3>Linux</h3>
+            <ol>
+              <li>Выберите подходящий пакет: Flatpak, Snap или .deb/.rpm.</li>
+              <li>Скачайте файл только из официального источника.</li>
+              <li>Установите его через менеджер пакетов.</li>
+              <li>Откройте приложение и настройте профиль под себя.</li>
+            </ol>
+          </article>
+
+          <article class="card">
+            <h3>Android TV / TV Box</h3>
+            <ol>
+              <li>Скачайте APK-файл из проверенного источника.</li>
+              <li>Включите установку из неизвестных источников.</li>
+              <li>Установите приложение и откройте его.</li>
+              <li>Подключитесь и проверьте соединение.</li>
+            </ol>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Как добавить подписку в приложение</h2>
+        <p class="lead">Ниже — самый простой способ добавить подписку в Hiddify или Karing: просто скопируйте ссылку и вставьте её в нужное поле профиля или подписки.</p>
+        <p class="lead">Подписка обновляется автоматически, она полностью бесплатная и поддерживается за счёт донатов.</p>
+        <p class="lead"><strong>Черные списки</strong> и <strong>белые списки</strong> содержат до 150 серверов — они доступны для выбора.</p>
+        <p class="lead"><strong>Черные списки</strong> подходят для обычного интернета, а <strong>белые списки</strong> работают при любом подключении, включая 4G на мобильных устройствах.</p>
+        <div class="stack">
+          <div class="mini">
+            <strong>1. Откройте приложение</strong>
+            Запустите Hiddify или Karing и откройте раздел «Добавить профиль», «Импорт» или «Подписка».
+          </div>
+          <div class="mini">
+            <strong>2. Сканируйте QR-код</strong>
+            В приложении найдите кнопку «Сканировать QR», «QR-код» или «Импорт по QR». Наведите камеру на код и дождитесь, пока приложение распознает его.
+          </div>
+          <div class="mini">
+            <strong>3. Вставьте ссылку</strong>
+            Если приложение не распознаёт код само, откройте поле для URL и вставьте ссылку вручную.
+          </div>
+          <div class="mini">
+            <strong>4. Подтвердите добавление</strong>
+            Нажмите «Добавить», «Импортировать» или «Подключить» и дождитесь загрузки профиля.
+          </div>
+          <div class="copy-box">
+            <span class="label">Черные списки</span>
+            <button class="copy-btn" onclick="copySubscription('https://translate.yandex.ru/translate?url=https://bitbucket.org/igareck/vpn-configs-for-russia/raw/main/BLACK_VLESS_RUS_mobile.txt&lang=de-de')">Копировать подписку</button>
+            <button class="import-btn" onclick="openApp('hiddify', 'https://translate.yandex.ru/translate?url=https://bitbucket.org/igareck/vpn-configs-for-russia/raw/main/BLACK_VLESS_RUS_mobile.txt&lang=de-de')">Добавить в Hiddify</button>
+            <button class="import-btn" onclick="openApp('karing', 'https://translate.yandex.ru/translate?url=https://bitbucket.org/igareck/vpn-configs-for-russia/raw/main/BLACK_VLESS_RUS_mobile.txt&lang=de-de')">Добавить в Karing</button>
+            <div class="qr-wrap">
+              <img src="QR-Black.png" alt="QR-код для черных списков" />
+            </div>
+          </div>
+          <div class="copy-box">
+            <span class="label">Белые списки</span>
+            <button class="copy-btn" onclick="copySubscription('https://translate.yandex.ru/translate?url=https://bitbucket.org/igareck/vpn-configs-for-russia/raw/main/Vless-Reality-White-Lists-Rus-Mobile.txt&lang=de-de')">Копировать подписку</button>
+            <button class="import-btn" onclick="openApp('hiddify', 'https://translate.yandex.ru/translate?url=https://bitbucket.org/igareck/vpn-configs-for-russia/raw/main/Vless-Reality-White-Lists-Rus-Mobile.txt&lang=de-de')">Добавить в Hiddify</button>
+            <button class="import-btn" onclick="openApp('karing', 'https://translate.yandex.ru/translate?url=https://bitbucket.org/igareck/vpn-configs-for-russia/raw/main/Vless-Reality-White-Lists-Rus-Mobile.txt&lang=de-de')">Добавить в Karing</button>
+            <div class="qr-wrap">
+              <img src="QR-White.png" alt="QR-код для белых списков" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Что делать после установки</h2>
+        <p class="lead">Ниже — короткая инструкция для первого запуска.</p>
+        <div class="stack">
+          <div class="mini">
+            <strong>1. Запустите приложение</strong>
+            Откройте его и внимательно прочитайте приветственный экран.
+          </div>
+          <div class="mini">
+            <strong>2. Выберите профиль</strong>
+            Который добавили по инструкции.
+          </div>
+          <div class="mini">
+            <strong>3. Подключитесь</strong>
+            Нажмите кнопку подключения и дождитесь подтверждения.
+          </div>
+          <div class="mini">
+            <strong>4. Проверьте результат</strong>
+            Откройте любой сайт и проверьте, что соединение работает.
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="donate-card">
+          <div class="donate-head">
+            <div>
+              <h2>Поддержите проект</h2>
+              <p class="lead">Если этот гид оказался полезным, спасибо за поддержку — она помогает развивать проект дальше и делать такие инструкции ещё лучше.</p>
+            </div>
+            <a class="donate-btn" href="https://vk.cc/d01cCT" target="_blank" rel="noopener">Перевести в рублях</a>
+          </div>
+          <div class="donate-grid">
+            <div class="donate-qr">
+              <img src="QR-%20Donat.png" alt="QR-код для доната" />
+            </div>
+            <div class="donate-text">
+              <p><strong>Без комиссии с любого банка</strong> — откройте ссылку выше и переведите сумму удобным способом.</p>
+              <p><strong>USDT TRC20</strong><br />TY5Zp7g465LjRFZbHu8FwEZqtJ5fqLV1x3</p>
+              <p class="donate-thanks">Спасибо за поддержку! Каждый вклад вдохновляет и помогает продолжать работу.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Полезные советы для новичка</h2>
+        <div class="stack">
+          <div class="mini">Если приложение не запускается — обновите операционную систему и проверьте версию приложения.</div>
+          <div class="mini">Если подключение не работает — перезапустите программу и проверьте интернет. Обновите подписку.</div>
+          <div class="mini">Если вы не уверены, где скачать — лучше использовать только официальные магазины или сайт разработчика.</div>
+        </div>
+      </section>
+    </div>
+    <div class="disclaimer">
+      Все данные предоставлены исключительно в ознакомительных целях и не призывают к действию. Использовать на свой страх и риск. Автор не несёт ответственность за использование. Взято с открытых источников интернета и не нарушают законов РФ.
+    </div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script>
+      function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(showToast._timer);
+        showToast._timer = setTimeout(() => toast.classList.remove('show'), 2200);
+      }
+
+      async function copySubscription(url) {
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(url);
+          } else {
+            const textarea = document.createElement('textarea');
+            textarea.value = url;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+          }
+          showToast('Подписка скопирована');
+        } catch (error) {
+          showToast('Не удалось скопировать автоматически');
+        }
+      }
+
+      function openApp(appName, url) {
+        const encodedUrl = encodeURIComponent(url);
+        const deepLink = appName === 'hiddify'
+          ? `hiddify://import?url=${encodedUrl}`
+          : `karing://install-config?url=${encodedUrl}`;
+
+        const anchor = document.createElement('a');
+        anchor.href = deepLink;
+        anchor.style.display = 'none';
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+      }
+    </script>
+  </body>
+</html>

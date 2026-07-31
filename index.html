@@ -346,6 +346,73 @@
         color: #fff7ed;
       }
 
+      .premium-card {
+        position: relative;
+        overflow: hidden;
+        padding: 24px;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        border-radius: 22px;
+        background: linear-gradient(135deg, rgba(14, 116, 144, 0.3), rgba(30, 64, 175, 0.24));
+        box-shadow: 0 16px 40px rgba(8, 47, 73, 0.24);
+      }
+
+      .premium-card::after {
+        position: absolute;
+        top: -70px;
+        right: -50px;
+        width: 190px;
+        height: 190px;
+        border-radius: 50%;
+        background: rgba(125, 211, 252, 0.12);
+        content: "";
+      }
+
+      .premium-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .premium-card h2 {
+        margin: 0 0 8px;
+        color: #e0f2fe;
+      }
+
+      .premium-card p {
+        max-width: 760px;
+        margin: 0 0 16px;
+        color: #bae6fd;
+      }
+
+      .premium-price {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .premium-price span {
+        padding: 8px 12px;
+        border: 1px solid rgba(186, 230, 253, 0.24);
+        border-radius: 999px;
+        background: rgba(8, 47, 73, 0.34);
+        color: #f0f9ff;
+        font-weight: 700;
+      }
+
+      .premium-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #38bdf8, #2563eb);
+        color: white;
+        text-decoration: none;
+        font-weight: 700;
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+      }
+
       .disclaimer {
         margin-top: 24px;
         padding-top: 16px;
@@ -385,6 +452,8 @@
         .donate-text {
           font-size: 0.95rem;
         }
+        .premium-card { padding: 18px; }
+        .premium-btn { width: 100%; }
       }
     </style>
   </head>
@@ -535,12 +604,48 @@
           </div>
           <div class="copy-box">
             <span class="label">Белые списки</span>
-            <button class="copy-btn" onclick="copySubscription('https://translate.yandex.ru/translate?url=https://bitbucket.org/igareck/vpn-configs-for-russia/raw/main/Vless-Reality-White-Lists-Rus-Mobile.txt&lang=de-de')">Копировать подписку</button>
-            <button class="import-btn" onclick="openApp('hiddify', 'https://translate.yandex.ru/translate?url=https://bitbucket.org/igareck/vpn-configs-for-russia/raw/main/Vless-Reality-White-Lists-Rus-Mobile.txt&lang=de-de')">Добавить в Hiddify</button>
-            <button class="import-btn" onclick="openApp('karing', 'https://translate.yandex.ru/translate?url=https://bitbucket.org/igareck/vpn-configs-for-russia/raw/main/Vless-Reality-White-Lists-Rus-Mobile.txt&lang=de-de')">Добавить в Karing</button>
+            <button class="copy-btn" onclick="copySubscription('https://translate.yandex.ru/translate?url=https://bitbucket.org/igareck/vpn-configs-for-russia/raw/main/WHITE-CIDR-RU-all.txt&lang=de-de')">Копировать подписку</button>
+            <button class="import-btn" onclick="openApp('hiddify', 'https://translate.yandex.ru/translate?url=https://bitbucket.org/igareck/vpn-configs-for-russia/raw/main/WHITE-CIDR-RU-all.txt&lang=de-de')">Добавить в Hiddify</button>
+            <button class="import-btn" onclick="openApp('karing', 'https://translate.yandex.ru/translate?url=https://bitbucket.org/igareck/vpn-configs-for-russia/raw/main/WHITE-CIDR-RU-all.txt&lang=de-de')">Добавить в Karing</button>
             <div class="qr-wrap">
               <img src="QR-White.png" alt="QR-код для белых списков" />
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="donate-card">
+          <div class="donate-head">
+            <div>
+              <h2>Поддержите проект</h2>
+              <p class="lead">Если этот гид оказался полезным, спасибо за поддержку — она помогает развивать проект дальше и делать такие инструкции ещё лучше.</p>
+            </div>
+            <a class="donate-btn" href="https://vk.cc/d01cCT" target="_blank" rel="noopener">Перевести в рублях</a>
+          </div>
+          <div class="donate-grid">
+            <div class="donate-qr">
+              <img src="QR-%20Donat.png" alt="QR-код для доната" />
+            </div>
+            <div class="donate-text">
+              <p><strong>Без комиссии с любого банка</strong> — откройте ссылку выше и переведите сумму удобным способом.</p>
+              <p><strong>USDT TRC20</strong><br />TY5Zp7g465LjRFZbHu8FwEZqtJ5fqLV1x3</p>
+              <p class="donate-thanks">Спасибо за поддержку! Каждый вклад вдохновляет и помогает продолжать работу.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="premium-card">
+          <div class="premium-content">
+            <h2>Бесплатный VPN не работает?</h2>
+            <p>Попробуйте стабильный платный вариант для тех случаев, когда нужна более предсказуемая работа и дополнительная поддержка.</p>
+            <div class="premium-price">
+              <span>250 ₽ в месяц</span>
+              <span>2 500 ₽ в год</span>
+            </div>
+            <a class="premium-btn" href="https://t.me/onevlessbot" target="_blank" rel="noopener">Перейти в Telegram-бот</a>
           </div>
         </div>
       </section>
@@ -564,28 +669,6 @@
           <div class="mini">
             <strong>4. Проверьте результат</strong>
             Откройте любой сайт и проверьте, что соединение работает.
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="donate-card">
-          <div class="donate-head">
-            <div>
-              <h2>Поддержите проект</h2>
-              <p class="lead">Если этот гид оказался полезным, спасибо за поддержку — она помогает развивать проект дальше и делать такие инструкции ещё лучше.</p>
-            </div>
-            <a class="donate-btn" href="https://vk.cc/d01cCT" target="_blank" rel="noopener">Перевести в рублях</a>
-          </div>
-          <div class="donate-grid">
-            <div class="donate-qr">
-              <img src="QR-%20Donat.png" alt="QR-код для доната" />
-            </div>
-            <div class="donate-text">
-              <p><strong>Без комиссии с любого банка</strong> — откройте ссылку выше и переведите сумму удобным способом.</p>
-              <p><strong>USDT TRC20</strong><br />TY5Zp7g465LjRFZbHu8FwEZqtJ5fqLV1x3</p>
-              <p class="donate-thanks">Спасибо за поддержку! Каждый вклад вдохновляет и помогает продолжать работу.</p>
-            </div>
           </div>
         </div>
       </section>
